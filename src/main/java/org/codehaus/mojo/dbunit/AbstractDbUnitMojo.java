@@ -29,257 +29,313 @@ import java.util.Properties;
 
 /**
  */
-public abstract class AbstractDbUnitMojo extends AbstractMojo {
+public abstract class AbstractDbUnitMojo
+    extends AbstractMojo
+{
     /**
      * @parameter
      */
     private String driver;
+
     /**
      * @parameter
      */
     private String username;
+
     /**
      * @parameter
      */
     private String password;
+
     /**
      * @parameter
      */
     private String url;
+
     /**
      * @parameter
      */
     private File sourceData;
+
     /**
      * @parameter
      */
     private String sourceDataFormat;
+
     /**
      * @parameter
      */
     private String schema;
+
     /**
      * @parameter
      */
     private String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
+
     /**
      * @parameter
      */
     private boolean supportBatchStatement;
+
     /**
      * @parameter
      */
     private boolean useQualifiedTableNames;
+
     /**
      * @parameter
      */
     private boolean datatypeWarning;
+
     /**
      * @parameter
      */
     private String escapePattern;
 
     public static final String FORMAT_FLAT = "flat";
+
     public static final String FORMAT_XML = "xml";
+
     public static final String FORMAT_DTD = "dtd";
+
     public static final String FORMAT_CSV = "csv";
+
     abstract DatabaseOperation getOperation();
 
-    public void execute() throws MojoExecutionException, MojoFailureException {
-        try {
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
+    {
+        try
+        {
             IDatabaseConnection connection = createConnection();
-            IDataSet dataset = getSrcDataSet(sourceData, sourceDataFormat, false);
+            IDataSet dataset = getSrcDataSet( sourceData, sourceDataFormat, false );
 
-            try {
-                getOperation().execute(connection, dataset);
-            } finally {
+            try
+            {
+                getOperation().execute( connection, dataset );
+            }
+            finally
+            {
                 connection.close();
             }
-            
-        } catch (Exception e) {
-            throw new MojoExecutionException("Caught Exception", e);
+
+        }
+        catch ( Exception e )
+        {
+            throw new MojoExecutionException( "Caught Exception", e );
         }
     }
 
-    protected IDataSet getSrcDataSet(File src, String format,
-            boolean forwardonly) throws DatabaseUnitException
+    protected IDataSet getSrcDataSet( File src, String format, boolean forwardonly )
+        throws DatabaseUnitException
     {
         try
         {
             IDataSetProducer producer;
-            if (format.equalsIgnoreCase(FORMAT_XML))
+            if ( format.equalsIgnoreCase( FORMAT_XML ) )
             {
-                producer = new XmlProducer(new InputSource(src.toURL().toString()));
+                producer = new XmlProducer( new InputSource( src.toURL().toString() ) );
             }
-            else if (format.equalsIgnoreCase(FORMAT_CSV))
+            else if ( format.equalsIgnoreCase( FORMAT_CSV ) )
             {
-                producer = new CsvProducer(src);
+                producer = new CsvProducer( src );
             }
-            else if (format.equalsIgnoreCase(FORMAT_FLAT))
+            else if ( format.equalsIgnoreCase( FORMAT_FLAT ) )
             {
-                producer = new FlatXmlProducer(new InputSource(src.toURL().toString()));
+                producer = new FlatXmlProducer( new InputSource( src.toURL().toString() ) );
             }
-            else if (format.equalsIgnoreCase(FORMAT_DTD))
+            else if ( format.equalsIgnoreCase( FORMAT_DTD ) )
             {
-                producer = new FlatDtdProducer(new InputSource(src.toURL().toString()));
+                producer = new FlatDtdProducer( new InputSource( src.toURL().toString() ) );
             }
             else
             {
-                throw new IllegalArgumentException("Type must be either 'flat'(default), 'xml', 'csv' or 'dtd' but was: " + format);
+                throw new IllegalArgumentException(
+                                                    "Type must be either 'flat'(default), 'xml', 'csv' or 'dtd' but was: "
+                                                                    + format );
             }
 
-            if (forwardonly)
+            if ( forwardonly )
             {
-                return new StreamingDataSet(producer);
+                return new StreamingDataSet( producer );
             }
-            return new CachedDataSet(producer);
+            return new CachedDataSet( producer );
         }
-        catch (IOException e)
+        catch ( IOException e )
         {
-            throw new DatabaseUnitException(e);
+            throw new DatabaseUnitException( e );
         }
     }
 
+    IDatabaseConnection createConnection()
+        throws Exception
+    {
 
-    IDatabaseConnection createConnection() throws Exception {
-
-        if (driver == null) {
-            throw new RuntimeException("Driver attribute must be set!");
+        if ( driver == null )
+        {
+            throw new RuntimeException( "Driver attribute must be set!" );
         }
-        if (username == null) {
-            throw new RuntimeException("User Id attribute must be set!");
+        if ( username == null )
+        {
+            throw new RuntimeException( "User Id attribute must be set!" );
         }
-        if (url == null) {
-            throw new RuntimeException("Url attribute must be set!");
+        if ( url == null )
+        {
+            throw new RuntimeException( "Url attribute must be set!" );
         }
 
         // Instantiate JDBC driver
-        Class dc = Class.forName(driver);
+        Class dc = Class.forName( driver );
         Driver driverInstance = (Driver) dc.newInstance();
         Properties info = new Properties();
-        info.put("user", username);
-        
-        if (password != null) {
-            info.put("password", password);
-        }
-        
-        Connection conn = driverInstance.connect(url, info);
+        info.put( "user", username );
 
-        if (conn == null) {
+        if ( password != null )
+        {
+            info.put( "password", password );
+        }
+
+        Connection conn = driverInstance.connect( url, info );
+
+        if ( conn == null )
+        {
             // Driver doesn't understand the URL
-            throw new SQLException("No suitable Driver for " + url);
+            throw new SQLException( "No suitable Driver for " + url );
         }
-        conn.setAutoCommit(true);
+        conn.setAutoCommit( true );
 
-        IDatabaseConnection connection = new DatabaseConnection(conn, schema);
+        IDatabaseConnection connection = new DatabaseConnection( conn, schema );
         DatabaseConfig config = connection.getConfig();
-        config.setFeature(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement);
-        config.setFeature(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames);
-        config.setFeature(DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning);
-        config.setProperty(DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern);
-        config.setProperty(DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY,
-                new ForwardOnlyResultSetTableFactory());
+        config.setFeature( DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement );
+        config.setFeature( DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames );
+        config.setFeature( DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning );
+        config.setProperty( DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern );
+        config.setProperty( DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory() );
 
         // Setup data type factory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(dataTypeFactoryName).newInstance();
-        config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName( dataTypeFactoryName ).newInstance();
+        config.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory );
 
         return connection;
     }
 
-    public String getDriver() {
+    public String getDriver()
+    {
         return driver;
     }
 
-    public void setDriver(String driver) {
+    public void setDriver( String driver )
+    {
         this.driver = driver;
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername( String username )
+    {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword( String password )
+    {
         this.password = password;
     }
 
-    public String getUrl() {
+    public String getUrl()
+    {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl( String url )
+    {
         this.url = url;
     }
 
-    public File getSourceData() {
+    public File getSourceData()
+    {
         return sourceData;
     }
 
-    public void setSourceData(File sourceData) {
+    public void setSourceData( File sourceData )
+    {
         this.sourceData = sourceData;
     }
 
-    public String getSourceDataFormat() {
+    public String getSourceDataFormat()
+    {
         return sourceDataFormat;
     }
 
-    public void setSourceDataFormat(String sourceDataFormat) {
+    public void setSourceDataFormat( String sourceDataFormat )
+    {
         this.sourceDataFormat = sourceDataFormat;
     }
 
-    public String getSchema() {
+    public String getSchema()
+    {
         return schema;
     }
 
-    public void setSchema(String schema) {
+    public void setSchema( String schema )
+    {
         this.schema = schema;
     }
 
-    public String getDataTypeFactoryName() {
+    public String getDataTypeFactoryName()
+    {
         return dataTypeFactoryName;
     }
 
-    public void setDataTypeFactoryName(String dataTypeFactoryName) {
+    public void setDataTypeFactoryName( String dataTypeFactoryName )
+    {
         this.dataTypeFactoryName = dataTypeFactoryName;
     }
 
-    public boolean isSupportBatchStatement() {
+    public boolean isSupportBatchStatement()
+    {
         return supportBatchStatement;
     }
 
-    public void setSupportBatchStatement(boolean supportBatchStatement) {
+    public void setSupportBatchStatement( boolean supportBatchStatement )
+    {
         this.supportBatchStatement = supportBatchStatement;
     }
 
-    public boolean isQualifiedTableNames() {
+    public boolean isQualifiedTableNames()
+    {
         return useQualifiedTableNames;
     }
 
-    public void setQualifiedTableNames(boolean useQualifiedTableNames) {
+    public void setQualifiedTableNames( boolean useQualifiedTableNames )
+    {
         this.useQualifiedTableNames = useQualifiedTableNames;
     }
 
-    public boolean isDatatypeWarning() {
+    public boolean isDatatypeWarning()
+    {
         return datatypeWarning;
     }
 
-    public void setDatatypeWarning(boolean datatypeWarning) {
+    public void setDatatypeWarning( boolean datatypeWarning )
+    {
         this.datatypeWarning = datatypeWarning;
     }
 
-    public String getEscapePattern() {
+    public String getEscapePattern()
+    {
         return escapePattern;
     }
 
-    public void setEscapePattern(String escapePattern) {
+    public void setEscapePattern( String escapePattern )
+    {
         this.escapePattern = escapePattern;
     }
 }
