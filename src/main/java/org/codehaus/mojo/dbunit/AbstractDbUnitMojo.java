@@ -49,7 +49,7 @@ public abstract class AbstractDbUnitMojo extends AbstractMojo {
     /**
      * @parameter
      */
-    private String sourceData;
+    private File sourceData;
     /**
      * @parameter
      */
@@ -88,7 +88,7 @@ public abstract class AbstractDbUnitMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             IDatabaseConnection connection = createConnection();
-            IDataSet dataset = getSrcDataSet(new File(sourceData), sourceDataFormat, false);
+            IDataSet dataset = getSrcDataSet(sourceData, sourceDataFormat, false);
 
             try {
                 getOperation().execute(connection, dataset);
@@ -219,11 +219,11 @@ public abstract class AbstractDbUnitMojo extends AbstractMojo {
         this.url = url;
     }
 
-    public String getSourceData() {
+    public File getSourceData() {
         return sourceData;
     }
 
-    public void setSourceData(String sourceData) {
+    public void setSourceData(File sourceData) {
         this.sourceData = sourceData;
     }
 

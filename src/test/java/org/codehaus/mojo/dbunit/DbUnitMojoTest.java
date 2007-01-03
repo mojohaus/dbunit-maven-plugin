@@ -2,6 +2,7 @@ package org.codehaus.mojo.dbunit;
 
 import junit.framework.TestCase;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -47,7 +48,7 @@ public class DbUnitMojoTest extends TestCase {
         mojo.setUsername(p.getProperty("username"));
         mojo.setPassword(p.getProperty("password"));
         mojo.setUrl(p.getProperty("url"));
-        mojo.setSourceData(p.getProperty("xmlDataSource"));
+        mojo.setSourceData( new File( p.getProperty("xmlDataSource") ));
         mojo.setSourceDataFormat(p.getProperty("xmlDataSourceFormat"));
         mojo.setSchema(p.getProperty("schema"));
         mojo.setDataTypeFactoryName(p.getProperty("dataTypeFactory", "org.dbunit.dataset.datatype.DefaultDataTypeFactory"));
