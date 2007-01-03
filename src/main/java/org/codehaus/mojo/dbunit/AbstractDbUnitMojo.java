@@ -149,20 +149,20 @@ public abstract class AbstractDbUnitMojo extends AbstractMojo {
         if (username == null) {
             throw new RuntimeException("User Id attribute must be set!");
         }
-        if (password == null) {
-            throw new RuntimeException("Password attribute must be set!");
-        }
         if (url == null) {
             throw new RuntimeException("Url attribute must be set!");
         }
 
-        // Instanciate JDBC driver
+        // Instantiate JDBC driver
         Class dc = Class.forName(driver);
         Driver driverInstance = (Driver) dc.newInstance();
         Properties info = new Properties();
         info.put("user", username);
-        info.put("password", password);
-
+        
+        if (password != null) {
+            info.put("password", password);
+        }
+        
         Connection conn = driverInstance.connect(url, info);
 
         if (conn == null) {
