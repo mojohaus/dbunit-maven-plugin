@@ -90,7 +90,12 @@ public abstract class AbstractDbUnitMojo extends AbstractMojo {
             IDatabaseConnection connection = createConnection();
             IDataSet dataset = getSrcDataSet(new File(sourceData), sourceDataFormat, false);
 
-            getOperation().execute(connection, dataset);
+            try {
+                getOperation().execute(connection, dataset);
+            } finally {
+                connection.close();
+            }
+            
         } catch (Exception e) {
             throw new MojoExecutionException("Caught Exception", e);
         }
