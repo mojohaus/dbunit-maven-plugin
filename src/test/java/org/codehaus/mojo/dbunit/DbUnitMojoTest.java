@@ -17,6 +17,7 @@ public class DbUnitMojoTest
     extends TestCase
 {
     private Properties p;
+    private Connection c;
 
     protected void setUp()
         throws Exception
@@ -36,15 +37,30 @@ public class DbUnitMojoTest
             return;
         }
 
-        Connection c =
-            DriverManager.getConnection( p.getProperty( "url" ), p.getProperty( "username" ),
-                                         p.getProperty( "password" ) );
+        
+        c = getConnection();
+        
         Statement st = c.createStatement();
         st.executeUpdate( "drop table person if exists" );
         st.executeUpdate( "create table person ( id integer, first_name varchar, last_name varchar)" );
-        c.close();
     }
 
+    private Connection getConnection()
+        throws Exception
+    {
+        return DriverManager.getConnection( p.getProperty( "url" ), p.getProperty( "username" ),
+                                            p.getProperty( "password" ) );
+        
+    }
+    protected void tearDown()
+        throws Exception
+    {
+        if ( c != null )
+        {
+            c.close();
+        }
+        
+    }
     public void testMojo()
         throws Exception
     {
@@ -67,13 +83,10 @@ public class DbUnitMojoTest
 
         mojo.execute();
 
-        Connection c =
-            DriverManager.getConnection( p.getProperty( "url" ), p.getProperty( "username" ),
-                                         p.getProperty( "password" ) );
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery( "select count(*) from person" );
-        assert ( rs.getInt( 1 ) == 2 );
-        c.close();
+        rs.next();
+        assertEquals( 2, rs.getInt(1) );
     }
 
     private boolean getBooleanProperty( String key )
