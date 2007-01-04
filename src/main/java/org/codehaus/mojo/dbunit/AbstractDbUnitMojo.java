@@ -33,42 +33,55 @@ public abstract class AbstractDbUnitMojo
     extends AbstractMojo
 {
     /**
+     * The class name of the JDBC driver to be used.
      * @parameter
+     * @required
      */
     private String driver;
 
     /**
+     * The user name used to connect to the database.
      * @parameter
+     * @required
      */
     private String username;
 
     /**
+     * The password of the user connecting to the database.
      * @parameter
      */
     private String password;
 
     /**
+     * The JDBC URL for the database to access, e.g. jdbc:db2:SAMPLE. 
      * @parameter
+     * @required
      */
     private String url;
 
     /**
+     * import data file
      * @parameter
+     * @required
      */
     private File sourceData;
 
     /**
-     * @parameter
+     * sourceData format type. Valid type are: flat, xml, csv, and dtd
+     * @parameter default-value="xml";
+     * @required
      */
     private String sourceDataFormat;
 
     /**
+     * The schema name that tables can be found under. 
      * @parameter
      */
     private String schema;
 
     /**
-     * @parameter
+     * Set the DataType factory to add support for non-standard database vendor data types. 
+     * @parameter default-value="org.dbunit.dataset.datatype.DefaultDataTypeFactory"
      */
     private String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
 
@@ -78,6 +91,7 @@ public abstract class AbstractDbUnitMojo
     private boolean supportBatchStatement;
 
     /**
+     * Enable or disable multiple schemas support by prefixing table names with the schema name. 
      * @parameter
      */
     private boolean useQualifiedTableNames;
@@ -88,6 +102,7 @@ public abstract class AbstractDbUnitMojo
     private boolean datatypeWarning;
 
     /**
+     * escapePattern
      * @parameter
      */
     private String escapePattern;
@@ -122,7 +137,7 @@ public abstract class AbstractDbUnitMojo
         }
         catch ( Exception e )
         {
-            throw new MojoExecutionException( "Caught Exception", e );
+            throw new MojoExecutionException( "Error executing " + getOperation().toString(), e );
         }
     }
 
@@ -170,19 +185,6 @@ public abstract class AbstractDbUnitMojo
     IDatabaseConnection createConnection()
         throws Exception
     {
-
-        if ( driver == null )
-        {
-            throw new RuntimeException( "Driver attribute must be set!" );
-        }
-        if ( username == null )
-        {
-            throw new RuntimeException( "User Id attribute must be set!" );
-        }
-        if ( url == null )
-        {
-            throw new RuntimeException( "Url attribute must be set!" );
-        }
 
         // Instantiate JDBC driver
         Class dc = Class.forName( driver );
