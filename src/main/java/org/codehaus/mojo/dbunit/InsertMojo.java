@@ -6,7 +6,7 @@ import org.dbunit.operation.DatabaseOperation;
  * @goal insert
  */
 public class InsertMojo
-    extends AbstractDbUnitMojo
+    extends AbstractDatabaseOperationMojo
 {
     DatabaseOperation getOperation()
     {

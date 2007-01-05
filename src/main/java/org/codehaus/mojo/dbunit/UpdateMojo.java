@@ -6,7 +6,7 @@ import org.dbunit.operation.DatabaseOperation;
  * @goal update
  */
 public class UpdateMojo
-    extends AbstractDbUnitMojo
+    extends AbstractDatabaseOperationMojo
 {
     DatabaseOperation getOperation()
     {

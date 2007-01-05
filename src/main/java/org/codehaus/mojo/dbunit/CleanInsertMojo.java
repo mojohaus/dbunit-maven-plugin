@@ -7,7 +7,7 @@ import org.dbunit.operation.DatabaseOperation;
  * @description Clean tables and insert values from file
  */
 public class CleanInsertMojo
-    extends AbstractDbUnitMojo
+    extends AbstractDatabaseOperationMojo
 {
     DatabaseOperation getOperation()
     {

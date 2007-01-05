@@ -6,7 +6,7 @@ import org.dbunit.operation.DatabaseOperation;
  * @goal delete-all
  */
 public class DeleteAllMojo
-    extends AbstractDbUnitMojo
+    extends AbstractDatabaseOperationMojo
 {
     DatabaseOperation getOperation()
     {
