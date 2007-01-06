@@ -10,7 +10,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 
 /**
- * Export a table and its dependents
+ * Export a table and its dependents to a file
  * @goal export-table
  */
 

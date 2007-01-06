@@ -3,6 +3,8 @@ package org.codehaus.mojo.dbunit;
 import org.dbunit.operation.DatabaseOperation;
 
 /**
+ * Execute DBUnit DELETE_ALL Operation
+ * 
  * @goal delete-all
  */
 public class DeleteAllMojo

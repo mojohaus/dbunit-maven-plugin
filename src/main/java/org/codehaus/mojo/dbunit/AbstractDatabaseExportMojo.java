@@ -14,7 +14,8 @@ public abstract class AbstractDatabaseExportMojo
     /**
      * Location of exported output file
      * 
-     * @parameter expression="${outputDirectory} default-value="${project.build.directory}/dbunit/export.xml
+     * @parameter expression="${outputFile} default-value="${project.build.directory}/dbunit/export.xml"
+     * @required
      */
 
     protected File outputFile;

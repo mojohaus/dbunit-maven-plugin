@@ -9,7 +9,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 
 /**
- * Full database export
+ * Export all tables into a file
  * @goal export-database
  */
 public class ExportDatabaseMojo

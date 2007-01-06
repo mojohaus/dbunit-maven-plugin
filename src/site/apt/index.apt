@@ -1,0 +1,46 @@
+ ------
+ Maven 2 DBUnit Plugin - Introduction
+ ------
+ Dan T. Tran
+ <dantran@gmail.com>
+ ------
+ January 05, 2007
+
+DBUnit Maven Plugin
+
+  Use this plugin to execute {{{http://dbunit.sourceforge.net}DBUnit}}'s utilities.
+  
+
+* Goals Overview
+  
+  * {{{export-database-mojo.html}dbunit:export-database}}: Export all tables into a file
+
+  * {{{export-table-mojo.html}dbunit:export-table}}: Export a table and its dependents to a file
+
+  * {{{clean-insert-mojo.html}dbunit:clean-insert}}: Execute CLEAN_INSERT operation
+
+  * {{{delete-all-mojo.html}dbunit:delete-all}}: Execute DETELE_ALL operation
+
+  * {{{delete.-mojohtml}dbunit:delete}}: Execute DELETE operation
+
+  * {{{insert-mojo.html}dbunit:insert}}: Execute INSERT operation
+
+  * {{{refresh-mojo.html}dbunit:refresh}}: Execute REFRESH operation
+
+  * {{{truncate-table.html}dbunit:truncate-table}}: Execute TRUNCATE_TABLE operation
+
+  * {{{update-mojo.html}dbunit:update}}: Execute UPDATE operation
+
+  
+  []
+
+* Usage
+  
+  Instructions on how to use the DBUnit Maven Plugin can be found {{{usage.html}here}}.  
+ 
+   
+* Examples
+
+  
+  []
+  
