@@ -27,11 +27,18 @@ public abstract class ExportTableMojo
 
     private String table;
 
+    protected IDataSet createDataSet( IDatabaseConnection connection )
+        throws Exception
+    {
+        String[] depTableNames = TablesDependencyHelper.getAllDependentTables( connection, table );
+        return connection.createDataSet( depTableNames );
+    }
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
         super.execute();
-        
+
         try
         {
             IDatabaseConnection connection = createConnection();

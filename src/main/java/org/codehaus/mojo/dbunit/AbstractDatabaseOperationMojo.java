@@ -49,6 +49,11 @@ public abstract class AbstractDatabaseOperationMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        if ( skip ) 
+        {
+            return;
+        }
+        
         super.execute();
         
         try

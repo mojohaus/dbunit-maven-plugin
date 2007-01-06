@@ -104,6 +104,13 @@ public abstract class AbstractDbUnitMojo
     protected String escapePattern;
 
     /**
+     * Skip the execution when true, very handy when using together with maven-test-skip
+     * 
+     * @parameter expression="${skip}" default-value="false"
+     */
+    protected boolean skip;
+    
+    /**
      * @parameter expression="${settings}"
      * @readonly
      */
