@@ -4,14 +4,10 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.operation.DatabaseOperation;
-import org.dbunit.database.DatabaseConfig;
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.ForwardOnlyResultSetTableFactory;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.CachedDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.csv.CsvProducer;
-import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.stream.IDataSetProducer;
 import org.dbunit.dataset.stream.StreamingDataSet;
 import org.dbunit.dataset.xml.FlatDtdProducer;
@@ -21,10 +17,7 @@ import org.xml.sax.InputSource;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /**
  */
@@ -48,92 +41,7 @@ public abstract class AbstractDatabaseOperationMojo
      */
     private String sourceDataFormat;
 
-    /**
-     * The schema name that tables can be found under.
-     * 
-     * @parameter
-     */
-    private String schema;
-
-    /**
-     * Set the DataType factory to add support for non-standard database vendor data types.
-     * 
-     * @parameter default-value="org.dbunit.dataset.datatype.DefaultDataTypeFactory"
-     */
-    private String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
-
-    /**
-     * @parameter
-     */
-    private boolean supportBatchStatement;
-
-    /**
-     * Enable or disable multiple schemas support by prefixing table names with the schema name.
-     * 
-     * @parameter
-     */
-    private boolean useQualifiedTableNames;
-
-    /**
-     * @parameter
-     */
-    private boolean datatypeWarning;
-
-    /**
-     * escapePattern
-     * 
-     * @parameter
-     */
-    private String escapePattern;
-
-    public static final String FORMAT_FLAT = "flat";
-
-    public static final String FORMAT_XML = "xml";
-
-    public static final String FORMAT_DTD = "dtd";
-
-    public static final String FORMAT_CSV = "csv";
-
     abstract DatabaseOperation getOperation();
-
-    IDatabaseConnection createConnection()
-        throws Exception
-    {
-
-        // Instantiate JDBC driver
-        Class dc = Class.forName( driver );
-        Driver driverInstance = (Driver) dc.newInstance();
-        Properties info = new Properties();
-        info.put( "user", username );
-
-        if ( password != null )
-        {
-            info.put( "password", password );
-        }
-
-        Connection conn = driverInstance.connect( url, info );
-
-        if ( conn == null )
-        {
-            // Driver doesn't understand the URL
-            throw new SQLException( "No suitable Driver for " + url );
-        }
-        conn.setAutoCommit( true );
-
-        IDatabaseConnection connection = new DatabaseConnection( conn, schema );
-        DatabaseConfig config = connection.getConfig();
-        config.setFeature( DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement );
-        config.setFeature( DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames );
-        config.setFeature( DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning );
-        config.setProperty( DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern );
-        config.setProperty( DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory() );
-
-        // Setup data type factory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName( dataTypeFactoryName ).newInstance();
-        config.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory );
-
-        return connection;
-    }
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -159,6 +67,19 @@ public abstract class AbstractDatabaseOperationMojo
         }
     }
 
+    protected void closeConnection ( IDatabaseConnection c )
+        throws MojoExecutionException
+    {
+        try 
+        {
+            c.close();
+        }
+        catch ( SQLException e )
+        {
+            throw new MojoExecutionException( "Unable to close connection", e );
+        }
+        
+    }
     protected IDataSet getSrcDataSet( File src, String format, boolean forwardonly )
         throws DatabaseUnitException
     {
@@ -220,63 +141,4 @@ public abstract class AbstractDatabaseOperationMojo
         this.sourceDataFormat = sourceDataFormat;
     }
 
-    public String getSchema()
-    {
-        return schema;
-    }
-
-    public void setSchema( String schema )
-    {
-        this.schema = schema;
-    }
-
-    public String getDataTypeFactoryName()
-    {
-        return dataTypeFactoryName;
-    }
-
-    public void setDataTypeFactoryName( String dataTypeFactoryName )
-    {
-        this.dataTypeFactoryName = dataTypeFactoryName;
-    }
-
-    public boolean isSupportBatchStatement()
-    {
-        return supportBatchStatement;
-    }
-
-    public void setSupportBatchStatement( boolean supportBatchStatement )
-    {
-        this.supportBatchStatement = supportBatchStatement;
-    }
-
-    public boolean isQualifiedTableNames()
-    {
-        return useQualifiedTableNames;
-    }
-
-    public void setQualifiedTableNames( boolean useQualifiedTableNames )
-    {
-        this.useQualifiedTableNames = useQualifiedTableNames;
-    }
-
-    public boolean isDatatypeWarning()
-    {
-        return datatypeWarning;
-    }
-
-    public void setDatatypeWarning( boolean datatypeWarning )
-    {
-        this.datatypeWarning = datatypeWarning;
-    }
-
-    public String getEscapePattern()
-    {
-        return escapePattern;
-    }
-
-    public void setEscapePattern( String escapePattern )
-    {
-        this.escapePattern = escapePattern;
-    }
 }
