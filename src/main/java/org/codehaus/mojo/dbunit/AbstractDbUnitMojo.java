@@ -48,14 +48,14 @@ public abstract class AbstractDbUnitMojo
      * settings.xml's server with ${settingsKey} as key
      * @parameter expression="${username}" 
      */
-    private String username;
+    protected String username;
 
     /**
      * Database password. If not given, it will be looked up through settings.xml's 
      * server with ${settingsKey} as key
      * @parameter expression="${password}" 
      */
-    private String password;
+    protected String password;
 
     /**
      * The JDBC URL for the database to access, e.g. jdbc:db2:SAMPLE.

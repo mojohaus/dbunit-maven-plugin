@@ -68,7 +68,7 @@ public class DbUnitMojoTest
         CleanInsertMojo mojo = new CleanInsertMojo();
 
         // populate parameters
-        mojo.setDriver( p.getProperty( "driver" ) );
+        mojo.driver = p.getProperty( "driver" ) ;
         mojo.setUsername( p.getProperty( "username" ) );
         mojo.setPassword( p.getProperty( "password" ) );
         mojo.setUrl( p.getProperty( "url" ) );

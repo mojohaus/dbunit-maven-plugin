@@ -27,14 +27,14 @@ public class OperationMojo
      * @parameter expression="type" 
      * @required
      */
-    private String type;
+    protected String type;
 
     /**
      * When true, place the entired operation in one transaction
      * @parameter expression="transaction" default-value="false"
      * 
      */
-    private boolean transaction;
+    protected boolean transaction;
 
     /**
      * import data file
@@ -42,7 +42,7 @@ public class OperationMojo
      * @parameter expression="${src}"
      * @required
      */
-    private File src;
+    protected File src;
 
     /**
      * src format type. Valid type are: flat, xml, csv, and dtd
@@ -50,7 +50,7 @@ public class OperationMojo
      * @parameter expression="${format}" default-value="xml";
      * @required
      */
-    private String format;
+    protected String format;
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
