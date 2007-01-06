@@ -11,6 +11,8 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 /**
  * Export all tables into a file
  * @goal export-database
+ * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
+ * @version $Id:$
  */
 public class ExportDatabaseMojo
     extends AbstractDatabaseExportMojo

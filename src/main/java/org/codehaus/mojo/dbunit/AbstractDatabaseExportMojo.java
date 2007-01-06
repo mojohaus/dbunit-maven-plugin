@@ -7,6 +7,9 @@ import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Base class of all export mojos
+ * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
+ * @version $Id:$
+ * 
  */
 public abstract class AbstractDatabaseExportMojo
     extends AbstractDbUnitMojo

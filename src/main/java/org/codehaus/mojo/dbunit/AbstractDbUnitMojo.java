@@ -18,6 +18,10 @@ import org.dbunit.dataset.datatype.IDataTypeFactory;
 
 /**
  * Common configurations for all DBUnit operations
+ * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
+ * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
+ * @version $Id:$
+ * 
  */
 public abstract class AbstractDbUnitMojo
     extends AbstractMojo

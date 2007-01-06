@@ -12,6 +12,8 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 /**
  * Export a table and its dependents to a file
  * @goal export-table
+ * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
+ * @version $Id:$
  */
 
 public abstract class ExportTableMojo

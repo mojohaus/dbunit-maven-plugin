@@ -6,6 +6,10 @@ import org.dbunit.operation.DatabaseOperation;
  * Execute DBUnit DELETE_ALL Operation
  * 
  * @goal delete-all
+ * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
+ * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
+ * @version $Id:$
+ * 
  */
 public class DeleteAllMojo
     extends AbstractDatabaseOperationMojo
