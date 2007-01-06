@@ -20,8 +20,8 @@ import org.dbunit.dataset.datatype.IDataTypeFactory;
  * Common configurations for all DBUnit operations
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
- * @version $Id:$
- * 
+ * @version $Id$
+ * @requiresDependencyResolution compile
  */
 public abstract class AbstractDbUnitMojo
     extends AbstractMojo
@@ -75,7 +75,7 @@ public abstract class AbstractDbUnitMojo
     /**
      * Set the DataType factory to add support for non-standard database vendor data types.
      * 
-     * @parameter default-value="org.dbunit.dataset.datatype.DefaultDataTypeFactory"
+     * @parameter expression="${dataTypeFactoryName}" default-value="org.dbunit.dataset.datatype.DefaultDataTypeFactory"
      */
     protected String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
 

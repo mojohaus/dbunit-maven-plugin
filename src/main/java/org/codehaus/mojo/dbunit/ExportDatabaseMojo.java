@@ -39,7 +39,7 @@ public class ExportDatabaseMojo
         }
         catch ( Exception e )
         {
-            throw new MojoExecutionException( "Error export database", e );
+            throw new MojoExecutionException( "Error exporting full database", e );
         }
     }
 }

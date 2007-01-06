@@ -50,7 +50,7 @@ public abstract class ExportTableMojo
         }
         catch ( Exception e )
         {
-            throw new MojoExecutionException( "Error export a table and its dependents", e );
+            throw new MojoExecutionException( "Error exporting tables", e );
         }
     }
 }

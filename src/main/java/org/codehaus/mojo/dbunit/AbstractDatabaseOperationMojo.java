@@ -31,7 +31,7 @@ public abstract class AbstractDatabaseOperationMojo
     /**
      * import data file
      * 
-     * @parameter
+     * @parameter expression="${sourceData}"
      * @required
      */
     private File sourceData;
@@ -39,7 +39,7 @@ public abstract class AbstractDatabaseOperationMojo
     /**
      * sourceData format type. Valid type are: flat, xml, csv, and dtd
      * 
-     * @parameter default-value="xml";
+     * @parameter expression="${sourceDataFormat}" default-value="xml";
      * @required
      */
     private String sourceDataFormat;
