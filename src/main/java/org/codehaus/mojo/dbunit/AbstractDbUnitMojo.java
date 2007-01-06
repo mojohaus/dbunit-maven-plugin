@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.settings.Server;
+import org.apache.maven.settings.Settings;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.ForwardOnlyResultSetTableFactory;
@@ -30,38 +34,37 @@ public abstract class AbstractDbUnitMojo
     /**
      * The class name of the JDBC driver to be used.
      * 
-     * @parameter
+     * @parameter expression="${driver}" 
      * @required
      */
     protected String driver;
 
     /**
-     * The user name used to connect to the database.
-     * 
-     * @parameter
-     * @required
+     * Database username.  If not given, it will be looked up through 
+     * settings.xml's server with ${settingsKey} as key
+     * @parameter expression="${username}" 
      */
-    protected String username;
+    private String username;
 
     /**
-     * The password of the user connecting to the database.
-     * 
-     * @parameter
+     * Database password. If not given, it will be looked up through settings.xml's 
+     * server with ${settingsKey} as key
+     * @parameter expression="${password}" 
      */
-    protected String password;
+    private String password;
 
     /**
      * The JDBC URL for the database to access, e.g. jdbc:db2:SAMPLE.
      * 
      * @parameter
-     * @required
+     * @required expression="${url}" 
      */
     protected String url;
 
     /**
      * The schema name that tables can be found under.
      * 
-     * @parameter
+     * @parameter expression="${schema}" 
      */
     protected String schema;
 
@@ -73,28 +76,50 @@ public abstract class AbstractDbUnitMojo
     protected String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
 
     /**
-     * @parameter
+     * @parameter expression="${supportBatchStatement}" 
      */
     protected boolean supportBatchStatement;
 
     /**
      * Enable or disable multiple schemas support by prefixing table names with the schema name.
      * 
-     * @parameter
+     * @parameter expression="${useQualifiedTableNames}" 
      */
     protected boolean useQualifiedTableNames;
 
     /**
-     * @parameter
+     * @parameter expression="${datatypeWarning}"
      */
     protected boolean datatypeWarning;
 
     /**
      * escapePattern
      * 
-     * @parameter
+     * @parameter expression="${escapePattern}"
      */
     protected String escapePattern;
+
+    /**
+     * @parameter expression="${settings}"
+     * @readonly
+     */
+    private Settings settings;
+
+    /**
+     * Server's id in settings.xml to look up username and password.
+     * Default to ${url} if not given.
+     * @parameter expression="${settingsKey}" 
+     */
+    private String settingsKey;
+
+    ////////////////////////////////////////////////////////////////////
+
+
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
+    {
+        loadUserInfoFromSettings();
+    }
 
     IDatabaseConnection createConnection()
         throws Exception
@@ -135,11 +160,52 @@ public abstract class AbstractDbUnitMojo
         return connection;
     }
 
+    /**
+     * Load username password from settings if user has not set them in JVM properties
+     */
+    private void loadUserInfoFromSettings()
+        throws MojoExecutionException
+    {
+        if ( this.settingsKey == null )
+        {
+            this.settingsKey = getUrl();
+        }
+
+        if ( ( getUsername() == null || getPassword() == null ) && ( settings != null ) )
+        {
+            Server server = this.settings.getServer( this.settingsKey );
+
+            if ( server != null )
+            {
+                if ( getUsername() == null )
+                {
+                    setUsername( server.getUsername() );
+                }
+
+                if ( getPassword() == null )
+                {
+                    setPassword( server.getPassword() );
+                }
+            }
+        }
+
+        if ( getUsername() == null )
+        {
+            //allow emtpy username
+            setUsername( "" );
+        }
+
+        if ( getPassword() == null )
+        {
+            //allow emtpy password
+            setPassword( "" );
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     //  UNIT TEST HELPERS 
     ///////////////////////////////////////////////////////////////////////////////
-    
-    
+
     public String getDriver()
     {
         return driver;

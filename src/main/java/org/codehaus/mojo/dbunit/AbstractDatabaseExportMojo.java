@@ -23,6 +23,7 @@ public abstract class AbstractDatabaseExportMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        super.execute();
         outputFile.getParentFile().mkdirs();
     }
 

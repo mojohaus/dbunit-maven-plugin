@@ -46,6 +46,8 @@ public abstract class AbstractDatabaseOperationMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        super.execute();
+        
         try
         {
             IDatabaseConnection connection = createConnection();
