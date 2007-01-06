@@ -28,6 +28,8 @@ public abstract class ExportTableMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        super.execute();
+        
         try
         {
             IDatabaseConnection connection = createConnection();
