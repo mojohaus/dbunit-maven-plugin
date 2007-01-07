@@ -38,9 +38,11 @@
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
          <item name="Goals" href="plugin-info.html"/>
+         <item name="Usage" href="usage.html"/>
+         <item name="FAQ" href="/"/>
       </menu>
       <menu name="Examples">
-         <item name="Executions" href="examples/execute.html"/>
+         <item name="clean-insert" href="examples/clean-insert.html"/>
       </menu>
       ${reports}
    </body>

@@ -12,27 +12,13 @@ DBUnit Maven Plugin
   
 
 * Goals Overview
+
+  * {{{export-mojo.html}dbunit:export}}: Export database tables into a file.
   
-  * {{{export-database-mojo.html}dbunit:export-database}}: Export all tables into a file
-
-  * {{{export-table-mojo.html}dbunit:export-table}}: Export a table and its dependents to a file
-
-  * {{{clean-insert-mojo.html}dbunit:clean-insert}}: Execute CLEAN_INSERT operation
-
-  * {{{delete-all-mojo.html}dbunit:delete-all}}: Execute DETELE_ALL operation
-
-  * {{{delete.-mojohtml}dbunit:delete}}: Execute DELETE operation
-
-  * {{{insert-mojo.html}dbunit:insert}}: Execute INSERT operation
-
-  * {{{refresh-mojo.html}dbunit:refresh}}: Execute REFRESH operation
-
-  * {{{truncate-table.html}dbunit:truncate-table}}: Execute TRUNCATE_TABLE operation
-
-  * {{{update-mojo.html}dbunit:update}}: Execute UPDATE operation
-
+  * {{{operation-mojo.html}dbunit:operation}}: Execute and database action using an external dataset file.
   
   []
+  
 
 * Usage
   
@@ -41,6 +27,7 @@ DBUnit Maven Plugin
    
 * Examples
 
+  * {{{clean-insert.html}Clear database and insert a dataset before test phase}}
   
   []
   

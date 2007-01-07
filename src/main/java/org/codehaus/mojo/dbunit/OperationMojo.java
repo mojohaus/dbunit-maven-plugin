@@ -8,7 +8,7 @@ import org.dbunit.ant.Operation;
 import org.dbunit.database.IDatabaseConnection;
 
 /**
- * Execute DBUnit Operation
+ * Execute DBUnit's Database Operation with an extern dataset file.
  * 
  * @goal operation
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
@@ -37,7 +37,7 @@ public class OperationMojo
     protected boolean transaction;
 
     /**
-     * import data file
+     * DataSet file
      * 
      * @parameter expression="${src}"
      * @required

@@ -8,3 +8,71 @@
 
 Usage
 
+  The execution of this plugin's mojo can be bound to a phase of build lifecycle.
+  Use the <dependencies> in <plugin> to specify the artifact that has your 
+  JDBC driver.
+  
+---------------------------
+
+<project>
+  [...]
+  <build>
+    [...]
+    <plugins>
+      [...]
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>dbunit-maven-plugin</artifactId>
+        
+        <!--jar file that has the jdbc driver -->
+        <dependencies>
+          <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+          </dependency>
+        </dependencies>
+        
+        <!-- common configurations -->
+        <configuration>
+          <driver></driver>
+          <url></url>
+          <username></username>
+          <password><password>
+          [....]
+        </configuration>
+        
+        </executions>
+          <execution>
+            <phase></phase>
+            <goals>
+              <goal></goal>
+            </goals>
+            <!-- specific configurations -->
+            <configuration>
+              [...]
+            </configuration>
+          </execution>
+          <execution>
+            <phase></phase>
+            <goals>
+              <goal></goal>
+            </goals>
+            <!-- specific configurations -->
+            <configuration>
+              [...]
+            </configuration>
+          </execution>
+          [...]
+        </executions>
+        
+        [...]
+      </plugin>
+      [...]
+    </plugins>
+    [...]
+  </build>
+  [...]
+</project>
+
+---------------------------
