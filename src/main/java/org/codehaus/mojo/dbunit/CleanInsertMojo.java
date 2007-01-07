@@ -7,7 +7,8 @@ import org.dbunit.operation.DatabaseOperation;
  * @goal clean-insert
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
- * @version $Id:$
+ * @version $Id$
+ * @deprecated use operation mojo instead
  */
 public class CleanInsertMojo
     extends AbstractDatabaseOperationMojo
