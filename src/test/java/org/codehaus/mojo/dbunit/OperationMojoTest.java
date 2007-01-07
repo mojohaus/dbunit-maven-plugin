@@ -11,39 +11,31 @@ import java.sql.Statement;
 public class OperationMojoTest
     extends AbstractDbUnitMojoTest
 {
-
-    private OperationMojo mojo;
-    private File outputFile;
-
-    
-    protected void setUp()
-        throws Exception
-    {
-        super.setUp();
-        
-        mojo = new OperationMojo();
-        this.populateMojoCommonConfiguration( mojo );
-        
-        outputFile = new File( getBasedir(), "target/export.xml" );
-    }
-    
     
     public void testCleanInsertOperation()
         throws Exception
     {
-        mojo.src = new File( p.getProperty( "xmlDataSource" ) );
-        mojo.format = "xml";
-        mojo.type = "CLEAN_INSERT";
-        mojo.execute();
+        //init database with fixed data
+        OperationMojo operation = new OperationMojo();
+        this.populateMojoCommonConfiguration( operation );
+        operation.src = new File( p.getProperty( "xmlDataSource" ) );
+        operation.format = "xml";
+        operation.type = "CLEAN_INSERT";
+        operation.execute();
         
-        ExportDatabaseMojo export = new ExportDatabaseMojo();
+        //export database to a file
+        File exportFile = new File( getBasedir(), "target/export.xml" );
+        ExportMojo export = new ExportMojo();
         this.populateMojoCommonConfiguration( export );
-        export.outputFile = outputFile;
+        export.dest = exportFile;
+        export.format = "xml";
         export.execute();
         
-        mojo.src = outputFile;
-        mojo.execute();
+        //then import it back to DB
+        operation.src = exportFile;
+        operation.execute();
         
+        //check to makesure we have 2 rows
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery( "select count(*) from person" );
         rs.next();
