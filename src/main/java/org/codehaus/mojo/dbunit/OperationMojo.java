@@ -8,7 +8,7 @@ import org.dbunit.ant.Operation;
 import org.dbunit.database.IDatabaseConnection;
 
 /**
- * Execute DBUnit's Database Operation with an extern dataset file.
+ * Execute DBUnit's Database Operation with an external dataset file.
  * 
  * @goal operation
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>

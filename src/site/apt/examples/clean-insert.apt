@@ -10,7 +10,7 @@
  
 Clean-Insert Example
  
-   The following example clean and populate database with a external DBUnit dataset
+   The following example cleans and populates database with an external DBUnit dataset
    
 ------------------------------------------
 

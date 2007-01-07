@@ -27,7 +27,7 @@ DBUnit Maven Plugin
    
 * Examples
 
-  * {{{clean-insert.html}Clear database and insert a dataset before test phase}}
+  * {{{examples/clean-insert.html}Clear database and insert a dataset before test phase}}
   
   []
   
