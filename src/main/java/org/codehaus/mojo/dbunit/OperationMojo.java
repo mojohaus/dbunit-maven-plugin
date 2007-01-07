@@ -45,7 +45,7 @@ public class OperationMojo
     protected File src;
 
     /**
-     * src format type. Valid type are: flat, xml, csv, and dtd
+     * Dataset file format type. Valid types are: flat, xml, csv, and dtd
      * 
      * @parameter expression="${format}" default-value="xml";
      * @required
@@ -81,7 +81,7 @@ public class OperationMojo
         }
         catch ( Exception e )
         {
-            throw new MojoExecutionException( "Error executing " + type, e );
+            throw new MojoExecutionException( "Error executing database operation: " + type, e );
         }
 
     }

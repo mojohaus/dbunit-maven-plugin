@@ -33,7 +33,7 @@
       <links>
          <item name="Mojo" href="http://mojo.codehaus.org"/>
          <item name="Maven" href="http://maven.apache.org/maven2"/>
-         <item name="DBUnit" href="http://dbunit.sourceforge.net"/>
+         <item name="DbUnit" href="http://dbunit.sourceforge.net"/>
       </links>
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
@@ -43,6 +43,8 @@
       </menu>
       <menu name="Examples">
          <item name="clean-insert" href="examples/clean-insert.html"/>
+         <item name="export database" href="examples/export-full.html"/>
+         <item name="settings" href="examples/settings.html"/>
       </menu>
       ${reports}
    </body>

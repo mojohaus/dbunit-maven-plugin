@@ -1,5 +1,5 @@
  ------
- Clean Insert database example
+ Getting Started
  ------
  Dan Tran
  <dantran@gmail.com>
@@ -10,7 +10,7 @@
  
 Clean-Insert Example
  
-   The following example cleans and populates database with an external DbUnit dataset
+   The following example exports all tables to a dataset file after test phase.
    
 ------------------------------------------
 
@@ -44,14 +44,14 @@ Clean-Insert Example
         
         </executions>
           <execution>
-            <phase>test-compile</phase>
+            <phase>test</phase>
             <goals>
-              <goal>operation</goal>
+              <goal>export</goal>
             </goals>
             <!-- specific configurations -->
             <configuration>
-              <type>CLEAN_INSERT</type>
-              <src>src/test/data/insert.xml</src>
+              <format>xml</format>
+              <dest>target/dbunit/export.xml</src>
             </configuration>
           </execution>
           [...]

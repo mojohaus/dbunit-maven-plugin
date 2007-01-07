@@ -24,31 +24,37 @@ public class ExportMojo
     extends AbstractDbUnitMojo
 {
     /**
+     * Location of exported DataSet file
      * @parameter expression="${dest}" default-value="${project.build.directory}/dbunit/export.xml"
      */
     protected File dest;
     
     /**
+     * DataSet file format
      * @parameter expression="${format}" default-value="xml"
      */
     protected String format;
     
     /**
+     * doctype
      * @parameter expression="${doctype}"
      */
     protected String doctype;
     
     /**
+     * List of DbUnit's Table.  See DbUnit's JavaDoc for details
      * @parameter
      */
     protected Table [] tables;
     
     /**
+     * List of DbUnit's QuerySet.  See DbUnit's JavaDoc for details
      * @parameter
      */
     protected QuerySet [] querySets;
     
     /**
+     * List of DbUnit's Query.  See DbUnit's JavaDoc for details
      * @parameter
      */
     protected Query [] queries;
