@@ -30,12 +30,11 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.dbunit.ant.Export;
 import org.dbunit.ant.Query;
-import org.dbunit.ant.QuerySet;
 import org.dbunit.ant.Table;
 import org.dbunit.database.IDatabaseConnection;
 
 /**
- * Execute DBUnit Export operation
+ * Execute DbUnit Export operation
  * 
  * @goal export
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
@@ -71,12 +70,6 @@ public class ExportMojo
     protected Table [] tables;
     
     /**
-     * List of DbUnit's QuerySet.  See DbUnit's JavaDoc for details
-     * @parameter
-     */
-    protected QuerySet [] querySets;
-    
-    /**
      * List of DbUnit's Query.  See DbUnit's JavaDoc for details
      * @parameter
      */
@@ -102,10 +95,6 @@ public class ExportMojo
                 for ( int i = 0 ; queries != null && i < queries.length; ++ i ) 
                 {
                     export.addQuery( (Query ) queries[i] );
-                }
-                for ( int i = 0 ; querySets != null && i < querySets.length; ++ i ) 
-                {
-                    export.addQuerySet( (QuerySet ) querySets[i] );
                 }
                 for ( int i = 0 ; tables != null && i < tables.length; ++ i ) 
                 {

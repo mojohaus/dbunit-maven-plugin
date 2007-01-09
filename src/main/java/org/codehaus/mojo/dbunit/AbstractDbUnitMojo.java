@@ -51,14 +51,6 @@ public abstract class AbstractDbUnitMojo
     extends AbstractMojo
 {
 
-    public static final String FORMAT_FLAT = "flat";
-
-    public static final String FORMAT_XML = "xml";
-
-    public static final String FORMAT_DTD = "dtd";
-
-    public static final String FORMAT_CSV = "csv";
-
     /**
      * The class name of the JDBC driver to be used.
      * 
@@ -203,142 +195,39 @@ public abstract class AbstractDbUnitMojo
     {
         if ( this.settingsKey == null )
         {
-            this.settingsKey = getUrl();
+            this.settingsKey = url;
         }
 
-        if ( ( getUsername() == null || getPassword() == null ) && ( settings != null ) )
+        if ( ( username == null || password == null ) && ( settings != null ) )
         {
             Server server = this.settings.getServer( this.settingsKey );
 
             if ( server != null )
             {
-                if ( getUsername() == null )
+                if ( username == null )
                 {
-                    setUsername( server.getUsername() );
+                    username = server.getUsername();
                 }
 
-                if ( getPassword() == null )
+                if ( password == null )
                 {
-                    setPassword( server.getPassword() );
+                    password = server.getPassword();
                 }
             }
         }
 
-        if ( getUsername() == null )
+        if ( username == null )
         {
             //allow emtpy username
-            setUsername( "" );
+            username =  "" ;
         }
 
-        if ( getPassword() == null )
+        if ( password == null )
         {
             //allow emtpy password
-            setPassword( "" );
+            password = "" ;
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    //  UNIT TEST HELPERS 
-    ///////////////////////////////////////////////////////////////////////////////
-
-    public String getDriver()
-    {
-        return driver;
-    }
-
-    public void setDriver( String driver )
-    {
-        this.driver = driver;
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public void setUsername( String username )
-    {
-        this.username = username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setPassword( String password )
-    {
-        this.password = password;
-    }
-
-    public String getUrl()
-    {
-        return url;
-    }
-
-    public void setUrl( String url )
-    {
-        this.url = url;
-    }
-
-    public String getSchema()
-    {
-        return schema;
-    }
-
-    public void setSchema( String schema )
-    {
-        this.schema = schema;
-    }
-
-    public String getDataTypeFactoryName()
-    {
-        return dataTypeFactoryName;
-    }
-
-    public void setDataTypeFactoryName( String dataTypeFactoryName )
-    {
-        this.dataTypeFactoryName = dataTypeFactoryName;
-    }
-
-    public boolean isSupportBatchStatement()
-    {
-        return supportBatchStatement;
-    }
-
-    public void setSupportBatchStatement( boolean supportBatchStatement )
-    {
-        this.supportBatchStatement = supportBatchStatement;
-    }
-
-    public boolean isQualifiedTableNames()
-    {
-        return useQualifiedTableNames;
-    }
-
-    public void setQualifiedTableNames( boolean useQualifiedTableNames )
-    {
-        this.useQualifiedTableNames = useQualifiedTableNames;
-    }
-
-    public boolean isDatatypeWarning()
-    {
-        return datatypeWarning;
-    }
-
-    public void setDatatypeWarning( boolean datatypeWarning )
-    {
-        this.datatypeWarning = datatypeWarning;
-    }
-
-    public String getEscapePattern()
-    {
-        return escapePattern;
-    }
-
-    public void setEscapePattern( String escapePattern )
-    {
-        this.escapePattern = escapePattern;
-    }
 
 }
