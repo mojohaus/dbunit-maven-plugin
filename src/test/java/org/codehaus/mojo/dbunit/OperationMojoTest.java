@@ -47,6 +47,12 @@ public class OperationMojoTest
         operation.type = "CLEAN_INSERT";
         operation.execute();
         
+        //check to makesure we have 2 rows
+        Statement st = c.createStatement();
+        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        rs.next();
+        assertEquals( 2, rs.getInt(1) );  
+        
         //export database to a file
         File exportFile = new File( getBasedir(), "target/export.xml" );
         ExportMojo export = new ExportMojo();
@@ -55,11 +61,7 @@ public class OperationMojoTest
         export.format = "xml";
         export.execute();
         
-        //check to makesure we have 2 rows
-        Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery( "select count(*) from person" );
-        rs.next();
-        assertEquals( 2, rs.getInt(1) );     
+   
         
         //then import it back to DB
         operation.src = exportFile;
