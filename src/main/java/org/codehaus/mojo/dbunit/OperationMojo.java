@@ -81,6 +81,8 @@ public class OperationMojo
     {
         if ( skip )
         {
+            this.getLog().info( "Skip operation: " + type + " execution" );
+            
             return;
         }
 

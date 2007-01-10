@@ -81,6 +81,7 @@ public class ExportMojo
     {
         if ( skip )
         {
+            this.getLog().info( "Skip export execution" );
             return;
         }
 
