@@ -30,7 +30,7 @@ import java.sql.Statement;
 
 /**
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
- * @version $Id:$
+ * @version $Id$
  */
 public class OperationMojoTest
     extends AbstractDbUnitMojoTest
@@ -55,15 +55,40 @@ public class OperationMojoTest
         export.format = "xml";
         export.execute();
         
+        //check to makesure we have 2 rows
+        Statement st = c.createStatement();
+        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        rs.next();
+        assertEquals( 2, rs.getInt(1) );     
+        
         //then import it back to DB
         operation.src = exportFile;
         operation.execute();
         
         //check to makesure we have 2 rows
-        Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        st = c.createStatement();
+        rs = st.executeQuery( "select count(*) from person" );
         rs.next();
         assertEquals( 2, rs.getInt(1) );        
     }
 
+    public void testSkip()
+        throws Exception
+    {
+        //init database with fixed data
+        OperationMojo operation = new OperationMojo();
+        this.populateMojoCommonConfiguration( operation );
+        operation.src = new File( p.getProperty( "xmlDataSource" ) );
+        operation.format = "xml";
+        operation.type = "CLEAN_INSERT";
+        operation.skip = true;
+        operation.execute();
+            
+        //check to makesure we have 2 rows
+        Statement st = c.createStatement();
+        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        rs.next();
+        //no data  since skip is set
+        assertEquals( 0, rs.getInt(1) );           
+    }
 }
