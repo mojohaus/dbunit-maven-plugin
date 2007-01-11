@@ -89,6 +89,9 @@ public class ExportMojo
         
         try
         {
+            //dbunit require dest directory is ready
+            dest.getParentFile().mkdirs();
+            
             IDatabaseConnection connection = createConnection();
             try
             {

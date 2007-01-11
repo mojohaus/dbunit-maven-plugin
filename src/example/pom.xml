@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project 
+  xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>dbunit-maven-plugin-example</artifactId>
+  <name>Maven DbUnit Plugin - Example</name>
+  <version>1.0-beta-1-SNAPSHOT</version>
+    
+  <description>
+    This example execises dbunit's operation, export, compare goals,
+    where data is import, export, import it back, and compare.
+    Just type "mvn" to run
+  </description>
+  
+  <build>
+    <defaultGoal>test</defaultGoal>
+    <plugins>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.7</version>
+            <scope>test</scope>
+          </dependency>        
+        </dependencies>        
+        <configuration>
+          <driver>${driver}</driver>
+          <url>${url}</url>
+          <username>${username}</username>
+          <password>${password}</password>
+          <skip>${maven.test.skip}</skip>
+          <srcFiles>
+            <srcFile>src/test/data/create-table.sql</srcFile>
+          </srcFiles>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-table</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>dbunit-maven-plugin</artifactId>
+        <dependencies>
+            <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.7</version>
+            <scope>test</scope>
+          </dependency>        
+        </dependencies>
+        
+        <configuration>
+          <driver>${driver}</driver>
+          <url>${url}</url>
+          <username>${username}</username>
+          <password>${password}</password>
+          <skip>${maven.test.skip}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <id>insert</id>
+            <phase>test</phase>
+            <goals>
+              <goal>operation</goal>
+            </goals>
+            <configuration>
+              <type>INSERT</type>
+              <src>${originalDataSetFile}</src>
+            </configuration>
+          </execution>
+          <execution>
+            <id>export</id>
+            <phase>test</phase>
+            <goals>
+              <goal>export</goal>
+            </goals>
+            <configuration>
+               <dest>${exportedDataSetFile}</dest>
+            </configuration>
+          </execution>
+          <execution>
+            <id>clean-insert-the-exported-dataset</id>
+            <phase>test</phase>
+            <goals>
+              <goal>operation</goal>
+            </goals>
+            <configuration>
+              <type>CLEAN_INSERT</type>
+              <src>${exportedDataSetFile}</src>
+            </configuration>
+          </execution>
+          <execution>
+            <id>compare-with-orignal-dataset</id>
+            <phase>test</phase>
+            <goals>
+              <goal>compare</goal>
+            </goals>
+            <configuration>
+              <src>${originalDataSetFile}</src>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <properties>
+    <driver>org.hsqldb.jdbcDriver</driver>
+    <url>jdbc:hsqldb:file:target/testdb</url>
+    <username>sa</username>
+    <password></password>
+    <originalDataSetFile>../test/data/sample-data.xml</originalDataSetFile>
+    <exportedDataSetFile>${project.build.directory}/dbunit/exported-dataset.xml</exportedDataSetFile>
+  </properties>
+
+</project>
