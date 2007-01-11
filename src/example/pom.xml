@@ -13,9 +13,13 @@
   <version>1.0-beta-1-SNAPSHOT</version>
     
   <description>
-    This example execises dbunit's operation, export, compare goals,
-    where data is import, export, import it back, and compare.
-    Just type "mvn" to run
+    This runnable example execises operation, export, and compare goals.
+    It uses sql-maven-plugin to create database, then have dbunit-maven-plugin
+    to initialize database with some data, export initial data to an external file,
+    import the exported dataset file back to database, finally compare database 
+    with orignal dataset file.
+    
+    Just run "mvn" to start
   </description>
   
   <build>

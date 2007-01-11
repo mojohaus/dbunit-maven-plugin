@@ -38,3 +38,6 @@ DbUnit Maven Plugin
 
   []
   
+  A comprehensive and runnable example is available 
+  in {{{http://svn.codehaus.org/mojo/trunk/mojo/mojo-sandbox/dbunit-maven-plugin/src/example}SVN}}
+  
