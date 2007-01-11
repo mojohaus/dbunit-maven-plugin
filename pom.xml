@@ -100,5 +100,18 @@
     
   </build>
 
+  <reporting>
+    <plugins>
+      
+      <!--  use specific version since 2.1 is broken -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
+     
+    </plugins>
+  </reporting>
+
 
 </project>
