@@ -145,7 +145,7 @@
               <src>${originalDataSetFile}</src>
               <queries>
                 <query>
-                  <name>perso</name>
+                  <name>person</name>
                   <sql>select * from person</sql>
                 </query>
               </queries>
