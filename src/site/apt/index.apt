@@ -13,9 +13,12 @@ DbUnit Maven Plugin
 
 * Goals Overview
 
-  * {{{export-mojo.html}dbunit:export}}: Export database tables into a file.
-  
   * {{{operation-mojo.html}dbunit:operation}}: Execute a database operation using an external dataset file.
+
+  * {{{export-mojo.html}dbunit:export}}: Export database tables into a dataset file.
+
+  * {{{compare-mojo.html}dbunit:compare}}: Compare a dataset with database.
+  
   
   []
   

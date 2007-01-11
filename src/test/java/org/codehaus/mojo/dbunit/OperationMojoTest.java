@@ -47,13 +47,13 @@ public class OperationMojoTest
         operation.type = "CLEAN_INSERT";
         operation.execute();
         
-        //check to makesure we have 2 rows
+        //check to makesure we have 2 rows after inserts thru dataset
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery( "select count(*) from person" );
         rs.next();
         assertEquals( 2, rs.getInt(1) );  
         
-        //export database to a file
+        //export database to another dataset file
         File exportFile = new File( getBasedir(), "target/export.xml" );
         ExportMojo export = new ExportMojo();
         this.populateMojoCommonConfiguration( export );
@@ -61,9 +61,7 @@ public class OperationMojoTest
         export.format = "xml";
         export.execute();
         
-   
-        
-        //then import it back to DB
+        //then import the exported dataset file back to DB
         operation.src = exportFile;
         operation.execute();
         
@@ -71,7 +69,15 @@ public class OperationMojoTest
         st = c.createStatement();
         rs = st.executeQuery( "select count(*) from person" );
         rs.next();
-        assertEquals( 2, rs.getInt(1) );        
+        assertEquals( 2, rs.getInt(1) );     
+        
+        //finally compare the current contents of the DB with the orginal dataset file
+        CompareMojo compare = new CompareMojo();
+        this.populateMojoCommonConfiguration( compare );
+        compare.src = new File( p.getProperty( "xmlDataSource" ) );
+        compare.format = "xml";
+        compare.sort =  false ;
+        compare.execute();
     }
 
     public void testSkip()
@@ -86,7 +92,7 @@ public class OperationMojoTest
         operation.skip = true;
         operation.execute();
             
-        //check to makesure we have 2 rows
+        //check to makesure we have 0 rows
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery( "select count(*) from person" );
         rs.next();
