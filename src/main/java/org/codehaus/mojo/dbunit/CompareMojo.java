@@ -65,13 +65,13 @@ public class CompareMojo
     protected boolean sort;
     
     /**
-     * List of DbUnit's Table.  See DbUnit's JavaDoc for details
+     * List of DbUnit's Table.  See DbUnit's org.dbunit.ant.Table JavaDoc for details
      * @parameter
      */
     protected Table [] tables;
     
     /**
-     * List of DbUnit's Query.  See DbUnit's JavaDoc for details
+     * List of DbUnit's Query.  See DbUnit's org.dbunit.ant.Query JavaDoc for details
      * @parameter
      */
     protected Query [] queries;
@@ -116,7 +116,7 @@ public class CompareMojo
         }
         catch ( Exception e )
         {
-            throw new MojoExecutionException( "Error executing dbunit comparison", e );
+            throw new MojoExecutionException( "Error executing DbUnit comparison.", e );
         }
 
     }

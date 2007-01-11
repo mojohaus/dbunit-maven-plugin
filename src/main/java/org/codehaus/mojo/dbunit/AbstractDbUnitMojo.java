@@ -96,37 +96,40 @@ public abstract class AbstractDbUnitMojo
     protected String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
 
     /**
-     * @parameter expression="${supportBatchStatement}" 
+     * Enable or disable usage of JDBC batched statement by DbUnit
+     * @parameter expression="${supportBatchStatement}" default-value="false"
      */
     protected boolean supportBatchStatement;
 
     /**
      * Enable or disable multiple schemas support by prefixing table names with the schema name.
      * 
-     * @parameter expression="${useQualifiedTableNames}" 
+     * @parameter expression="${useQualifiedTableNames}" default-value="false"
      */
     protected boolean useQualifiedTableNames;
 
     /**
-     * @parameter expression="${datatypeWarning}"
+     * Enable or disable the warning message displayed when DbUnit encounter an unsupported data type.
+     * @parameter expression="${datatypeWarning}" default-value="false"
      */
     protected boolean datatypeWarning;
 
     /**
      * escapePattern
      * 
-     * @parameter expression="${escapePattern}"
+     * @parameter expression="${escapePattern}" 
      */
     protected String escapePattern;
 
     /**
-     * Skip the execution when true, very handy when using together with maven-test-skip
+     * Skip the execution when true, very handy when using together with maven.test.skip.
      * 
      * @parameter expression="${skip}" default-value="false"
      */
     protected boolean skip;
     
     /**
+     * Access to hidding username/password
      * @parameter expression="${settings}"
      * @readonly
      */

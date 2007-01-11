@@ -111,7 +111,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>compare-with-orignal-dataset</id>
+            <id>compare-database-with-original-dataset</id>
             <phase>test</phase>
             <goals>
               <goal>compare</goal>
@@ -120,6 +120,39 @@
               <src>${originalDataSetFile}</src>
             </configuration>
           </execution>
+          <execution>
+            <id>compare-table-with-original-dataset</id>
+            <phase>test</phase>
+            <goals>
+              <goal>compare</goal>
+            </goals>
+            <configuration>
+              <src>${originalDataSetFile}</src>
+              <tables>
+                <table>
+                  <name>person</name>
+                </table>
+              </tables>
+            </configuration>
+          </execution>
+          <execution>
+            <id>compare-queries-with-original-dataset</id>
+            <phase>test</phase>
+            <goals>
+              <goal>compare</goal>
+            </goals>
+            <configuration>
+              <src>${originalDataSetFile}</src>
+              <queries>
+                <query>
+                  <name>perso</name>
+                  <sql>select * from person</sql>
+                </query>
+              </queries>
+            </configuration>
+          </execution>
+          
+          <table name="BAR"/>  
         </executions>
       </plugin>
     </plugins>
