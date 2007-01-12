@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>mojo</artifactId>
-    <version>12</version>
+    <version>13</version>
   </parent>
   
   <groupId>org.codehaus.mojo</groupId>
@@ -16,6 +16,15 @@
   <name>DbUnit Plugin</name>
   <url>http://mojo.codehaus.org/dbunit-maven-plugin/</url>
   <inceptionYear>2006</inceptionYear>
+  
+  <description>
+     Use this plugin to invoke DbUnit utilities
+  </description>
+  
+  <prerequisites>
+    <maven>2.0</maven>
+  </prerequisites>
+  
   
   <developers>
     <developer>
@@ -88,6 +97,7 @@
     <defaultGoal>install</defaultGoal>
     
     <plugins>
+    
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -96,6 +106,19 @@
           <target>1.4</target>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-docck-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
     </plugins>
     
   </build>
