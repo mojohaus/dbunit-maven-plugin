@@ -35,7 +35,7 @@ import junit.framework.TestCase;
 
 /**
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
- * @version $Id:$
+ * @version $Id$
  */
 public abstract class AbstractDbUnitMojoTest
     extends TestCase
