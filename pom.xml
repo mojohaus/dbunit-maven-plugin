@@ -4,9 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <artifactId>mojo-sandbox</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>2</version>
+    <artifactId>mojo</artifactId>
+    <version>12</version>
   </parent>
   
   <groupId>org.codehaus.mojo</groupId>
@@ -15,7 +15,7 @@
   <version>1.0-beta-1-SNAPSHOT</version>
   <name>DbUnit Plugin</name>
   <url>http://mojo.codehaus.org/dbunit-maven-plugin/</url>
-  <inceptionYear>2005</inceptionYear>
+  <inceptionYear>2006</inceptionYear>
   
   <developers>
     <developer>
@@ -28,14 +28,14 @@
       <timezone>+8</timezone>
     </developer>
     
-      <developer>
-        <id>dtran</id>
-        <name>Dan Tran</name>
-        <email>dantran@apache.org</email>
-        <roles>
-          <role>Java Developer</role>
-        </roles>
-      </developer>
+    <developer>
+      <id>dtran</id>
+      <name>Dan Tran</name>
+      <email>dantran@apache.org</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
           
   </developers>
     
