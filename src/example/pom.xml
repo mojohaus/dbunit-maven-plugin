@@ -19,7 +19,8 @@
     import the exported dataset file back to database, finally compare database 
     with orignal dataset file.
     
-    Just run "mvn" to start
+    svn co http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin/src/example and run "mvn" 
+    
   </description>
   
   <build>
