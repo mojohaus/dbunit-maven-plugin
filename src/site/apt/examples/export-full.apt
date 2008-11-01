@@ -38,11 +38,11 @@ Clean-Insert Example
           <driver>com.vendor.jdbc.Driver</driver>
           <url>jdbc:vendor:mydatabase</url>
           <username>a.username</username>
-          <password>a.password<password>
+          <password>a.password</password>
           [....]
         </configuration>
         
-        </executions>
+        <executions>
           <execution>
             <phase>test</phase>
             <goals>
@@ -51,7 +51,7 @@ Clean-Insert Example
             <!-- specific configurations -->
             <configuration>
               <format>xml</format>
-              <dest>target/dbunit/export.xml</src>
+              <dest>target/dbunit/export.xml</dest>
             </configuration>
           </execution>
           [...]

@@ -125,6 +125,7 @@ public abstract class AbstractDbUnitMojo
      * skipOracleRecycleBinTables
      * 
      * @parameter expression="${escapePattern}" default-value="false"
+     * @since 1.0-beta-2
      */
     protected boolean skipOracleRecycleBinTables;
     
