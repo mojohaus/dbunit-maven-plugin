@@ -4,8 +4,8 @@
   
   <parent>
     <groupId>org.codehaus.mojo</groupId>
-    <artifactId>mojo</artifactId>
-    <version>14</version>
+    <artifactId>mojo-parent</artifactId>
+    <version>18</version>
   </parent>
   
   <groupId>org.codehaus.mojo</groupId>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.dbunit</groupId>
       <artifactId>dbunit</artifactId>
-      <version>2.2</version>
+      <version>2.3.0</version>
     </dependency>
     <dependency>
       <groupId>ant</groupId>
@@ -106,6 +106,7 @@
         </configuration>
       </plugin>
       
+      <!-- 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-docck-plugin</artifactId>
@@ -117,7 +118,8 @@
           </execution>
         </executions>
       </plugin>
-      
+       -->
+       
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <version>1.0</version>
@@ -143,16 +145,4 @@
     
   </build>
 
-  <reporting>
-    <plugins>
-      
-      <!--  use specific version since 2.1 is broken -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.0</version>
-      </plugin>
-     
-    </plugins>
-  </reporting>
 </project>
