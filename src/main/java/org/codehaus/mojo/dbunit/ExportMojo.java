@@ -39,6 +39,7 @@ import org.dbunit.database.IDatabaseConnection;
  * @goal export
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
+ * @author <a href="mailto:david@codehaus.org">David J. M. Karlsen</a>
  * @version $Id$
  * 
  */
@@ -75,6 +76,12 @@ public class ExportMojo
      */
     protected Query [] queries;
     
+    /**
+     * Set to true to order exported data according to integrity constraints defined in DB.
+     * @parameter
+     */
+    protected boolean ordered;
+    
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -96,6 +103,7 @@ public class ExportMojo
             try
             {
                 Export export = new Export();
+                export.setOrdered( ordered );
                 for ( int i = 0 ; queries != null && i < queries.length; ++ i ) 
                 {
                     export.addQuery( (Query ) queries[i] );
