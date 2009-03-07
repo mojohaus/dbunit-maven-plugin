@@ -82,6 +82,12 @@ public class ExportMojo
      */
     protected boolean ordered;
     
+    /**
+     * Encoding of exported data.
+     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     */
+    protected String encoding;
+    
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -116,6 +122,7 @@ public class ExportMojo
                 export.setDest( dest );
                 export.setDoctype( doctype );
                 export.setFormat( format );
+                export.setEncoding( encoding );
                 
                 export.execute( connection );
             }
