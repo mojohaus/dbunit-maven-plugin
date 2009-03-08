@@ -55,8 +55,7 @@ public class OperationMojo
 
     /**
      * When true, place the entired operation in one transaction
-     * @parameter expression="transaction" default-value="false"
-     * 
+     * @parameter expression="${transaction}" default-value="false"
      */
     protected boolean transaction;
 
