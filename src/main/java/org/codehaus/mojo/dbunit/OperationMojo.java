@@ -48,7 +48,7 @@ public class OperationMojo
      * INSERT, DELETE, DELETE_ALL, REFRESH, CLEAN_INSERT, MSSQL_INSERT, 
      * MSSQL_REFRESH, MSSQL_CLEAN_INSERT
      * 
-     * @parameter expression="type" 
+     * @parameter expression="${type}" 
      * @required
      */
     protected String type;
