@@ -30,6 +30,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>sql-maven-plugin</artifactId>
+        <version>1.3</version>
         <dependencies>
           <dependency>
             <groupId>hsqldb</groupId>
@@ -62,6 +63,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>dbunit-maven-plugin</artifactId>
+        <version>@project.version@</version>
         <dependencies>
             <dependency>
             <groupId>hsqldb</groupId>
