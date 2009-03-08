@@ -13,7 +13,11 @@
   <name>DbUnit Plugin</name>
   <url>http://mojo.codehaus.org/dbunit-maven-plugin/</url>
   <inceptionYear>2006</inceptionYear>
-  
+  <scm>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</developerConnection>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</connection>
+    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/dbunit-maven-plugin</url>
+  </scm>  
   <description>
      Use this plugin to invoke DbUnit utilities
   </description>
