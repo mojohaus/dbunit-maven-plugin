@@ -20,6 +20,9 @@
 
 <project>
    <body>
+      <links>
+        <item name="DbUnit" href="http://dbunit.sourceforge.net"/>
+      </links>
       <menu name="Overview">
          <item name="Introduction" href="index.html"/>
          <item name="Goals" href="plugin-info.html"/>
