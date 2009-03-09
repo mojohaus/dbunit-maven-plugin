@@ -28,8 +28,10 @@
     <title>DbUnit</title>
     <faq id="DbUnit">
       <question>
+      	I get an error when trying to export an oracle database.
       </question>
       <answer>
+      	Try setting the skipOracleRecycleBinTables property to true on the export mojo.
       </answer>
     </faq>
   </part>
