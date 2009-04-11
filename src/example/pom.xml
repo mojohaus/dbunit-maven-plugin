@@ -65,7 +65,7 @@
         <artifactId>dbunit-maven-plugin</artifactId>
         <version>@project.version@</version>
         <dependencies>
-            <dependency>
+          <dependency>
             <groupId>hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>1.8.0.7</version>
@@ -164,7 +164,7 @@
     <url>jdbc:hsqldb:file:target/testdb</url>
     <username>sa</username>
     <password></password>
-    <originalDataSetFile>../test/data/sample-data.xml</originalDataSetFile>
+    <originalDataSetFile>../../src/test/data/sample-data.xml</originalDataSetFile>
     <exportedDataSetFile>${project.build.directory}/dbunit/exported-dataset.xml</exportedDataSetFile>
   </properties>
 
