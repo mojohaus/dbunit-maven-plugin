@@ -153,8 +153,8 @@ public abstract class AbstractDbUnitMojo
 
     /**
      * Class name of metadata handler.
-     * 
      * @parameter expression="${metadataHandlerName}" default-value="org.dbunit.database.DefaultMetadataHandler"
+     * @since 1.0-beta-3
      */
     protected String metadataHandlerName;
 
