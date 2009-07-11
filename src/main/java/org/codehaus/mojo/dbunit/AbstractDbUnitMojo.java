@@ -38,6 +38,7 @@ import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.ForwardOnlyResultSetTableFactory;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.database.IMetadataHandler;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
 
 /**
@@ -150,6 +151,13 @@ public abstract class AbstractDbUnitMojo
      */
     private String settingsKey;
 
+    /**
+     * Class name of metadata handler.
+     * 
+     * @parameter expression="${metadataHandlerName}" default-value="org.dbunit.database.DefaultMetadataHandler"
+     */
+    protected String metadataHandlerName;
+
     ////////////////////////////////////////////////////////////////////
 
 
@@ -196,6 +204,10 @@ public abstract class AbstractDbUnitMojo
         // Setup data type factory
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName( dataTypeFactoryName ).newInstance();
         config.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory );
+
+        // Setup metadata handler
+        IMetadataHandler metadataHandler = (IMetadataHandler) Class.forName( metadataHandlerName ).newInstance();
+        config.setProperty( DatabaseConfig.PROPERTY_METADATA_HANDLER, metadataHandler );
 
         return connection;
     }

@@ -111,6 +111,7 @@ public abstract class AbstractDbUnitMojoTest
         mojo.url =  p.getProperty( "url" ) ;
         mojo.schema =  p.getProperty( "schema" ) ;
         mojo.dataTypeFactoryName = p.getProperty( "dataTypeFactory", "org.dbunit.dataset.datatype.DefaultDataTypeFactory"  );
+        mojo.metadataHandlerName = p.getProperty( "metadataHandler", "org.dbunit.database.DefaultMetadataHandler"  );
         mojo.supportBatchStatement = getBooleanProperty( "supportBatchStatement" ) ;
         mojo.useQualifiedTableNames = getBooleanProperty( "useQualifiedTableNames" );
         mojo.escapePattern = p.getProperty( "datatypeWarning" );
