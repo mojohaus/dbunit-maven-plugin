@@ -36,7 +36,6 @@
       </roles>
       <timezone>+8</timezone>
     </developer>
-    
     <developer>
       <id>dtran</id>
       <name>Dan Tran</name>
@@ -45,7 +44,18 @@
         <role>Java Developer</role>
       </roles>
     </developer>
-          
+    <developer>
+      <id>david</id>
+      <name>David J. M. Karlsen</name>
+      <email>david@codehaus.org</email>
+      <organization>codehaus.org</organization>
+      <organizationUrl>http://www.codehaus.org</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>1</timezone>
+      <url>http://www.davidkarlsen.com</url>
+    </developer>
   </developers>
     
   <licenses>
