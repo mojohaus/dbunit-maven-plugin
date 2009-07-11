@@ -21,11 +21,13 @@
   <description>
      Use this plugin to invoke DbUnit utilities
   </description>
-  
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://jira.codehaus.org/browse/MDBUNIT</url>
+  </issueManagement>
   <prerequisites>
     <maven>2.0</maven>
   </prerequisites>
-  
   <developers>
     <developer>
       <id>topping</id>
@@ -57,7 +59,6 @@
       <url>http://www.davidkarlsen.com</url>
     </developer>
   </developers>
-    
   <licenses>
     <license>
       <name>The MIT License</name>
@@ -65,7 +66,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -112,7 +112,6 @@
       <artifactId>maven-settings</artifactId>
       <version>2.0</version>
     </dependency>
-          
   </dependencies>
     
   <build>
@@ -166,7 +165,6 @@
           <urlDownload>${project.url}</urlDownload>
           <columnNames>Key,Summary,Status,Resolution,Assignee,Type,Version,Fix Version</columnNames>
           <generateJiraAnnouncement>true</generateJiraAnnouncement>
-          <component>12521</component> <!-- TODO: remove when 1st 1.0 release and own JIRA project -->
           <toAddresses>
             <toAddress>dev@mojo.codehaus.org</toAddress>
             <toAddress>user@mojo.codehaus.org</toAddress>
@@ -176,5 +174,4 @@
       </plugin>
     </plugins>
   </reporting>
-
 </project>
