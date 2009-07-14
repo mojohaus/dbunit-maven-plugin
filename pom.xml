@@ -9,14 +9,14 @@
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>dbunit-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.0-beta-3</version>
+  <version>1.0-SNAPSHOT</version>
   <name>DbUnit Plugin</name>
   <url>http://mojo.codehaus.org/dbunit-maven-plugin/</url>
   <inceptionYear>2006</inceptionYear>
   <scm>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/dbunit-maven-plugin-1.0-beta-3</developerConnection>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/dbunit-maven-plugin-1.0-beta-3</connection>
-    <url>http://fisheye.codehaus.org/browse/mojo/tags/dbunit-maven-plugin-1.0-beta-3</url>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</developerConnection>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</connection>
+    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/dbunit-maven-plugin</url>
   </scm>  
   <description>
      Use this plugin to invoke DbUnit utilities
