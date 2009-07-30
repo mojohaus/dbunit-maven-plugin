@@ -25,7 +25,12 @@ package org.codehaus.mojo.dbunit;
 */
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.dbunit.ant.Operation;
@@ -61,11 +66,17 @@ public class OperationMojo
 
     /**
      * DataSet file
-     * 
+     * Please use sources instead.
      * @parameter expression="${src}"
-     * @required
+     * @deprecated 1.0
      */
     protected File src;
+    
+    /**
+     * DataSet files.
+     * @parameter 
+     */
+    protected File[] sources;
 
     /**
      * Dataset file format type. Valid types are: flat, xml, csv, and dtd
@@ -87,17 +98,27 @@ public class OperationMojo
 
         super.execute();
         
+        List concatenatedSources = new ArrayList();
+        CollectionUtils.addIgnoreNull( concatenatedSources, src );
+        if ( sources != null ) {
+            concatenatedSources.addAll( Arrays.asList( sources ) );
+        }
+        
         try
         {
             IDatabaseConnection connection = createConnection();
+            
             try
             {
-                Operation op = new Operation();
-                op.setFormat( format );
-                op.setSrc( src );
-                op.setTransaction( transaction );
-                op.setType( type );
-                op.execute( connection );
+                for ( Iterator i = concatenatedSources.iterator(); i.hasNext(); ) {
+                    File source = (File) i.next();
+                    Operation op = new Operation();
+                    op.setFormat( format );
+                    op.setSrc( source );
+                    op.setTransaction( transaction );
+                    op.setType( type );
+                    op.execute( connection );
+                }
             }
             finally
             {
@@ -108,6 +129,5 @@ public class OperationMojo
         {
             throw new MojoExecutionException( "Error executing database operation: " + type, e );
         }
-
     }
 }
