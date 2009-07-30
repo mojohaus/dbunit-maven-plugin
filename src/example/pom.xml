@@ -89,7 +89,9 @@
             </goals>
             <configuration>
               <type>INSERT</type>
-              <src>${originalDataSetFile}</src>
+              <sources>
+                <source>${originalDataSetFile}</source>
+              </sources>
             </configuration>
           </execution>
           <execution>
@@ -110,7 +112,9 @@
             </goals>
             <configuration>
               <type>CLEAN_INSERT</type>
-              <src>${exportedDataSetFile}</src>
+              <sources>
+                <source>${exportedDataSetFile}</source>
+              </sources>
             </configuration>
           </execution>
           <execution>

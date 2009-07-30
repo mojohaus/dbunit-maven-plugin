@@ -52,7 +52,9 @@ Clean-Insert Example
             <!-- specific configurations -->
             <configuration>
               <type>CLEAN_INSERT</type>
-              <src>src/test/data/insert.xml</src>
+              <sources>
+                <src>src/test/data/insert.xml</src>
+              </sources>
             </configuration>
           </execution>
           [...]
