@@ -78,7 +78,7 @@ public class ExportMojo
     
     /**
      * Set to true to order exported data according to integrity constraints defined in DB.
-     * @parameter
+     * @parameter expression=${ordered}
      */
     protected boolean ordered;
     
