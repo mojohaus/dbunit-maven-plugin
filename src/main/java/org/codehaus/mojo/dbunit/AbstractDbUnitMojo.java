@@ -158,6 +158,15 @@ public abstract class AbstractDbUnitMojo
      */
     protected String metadataHandlerName;
 
+    /**
+     * Be case sensitive when handling tables.
+     * @see http://www.dbunit.org/properties.html#casesensitivetablenames
+     * 
+     * @parameter default-value="false"
+     */
+    private boolean caseSensitiveTableNames;
+
+
     ////////////////////////////////////////////////////////////////////
 
 
@@ -197,6 +206,7 @@ public abstract class AbstractDbUnitMojo
         config.setFeature( DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames );
         config.setFeature( DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning );
         config.setFeature( DatabaseConfig.FEATURE_SKIP_ORACLE_RECYCLEBIN_TABLES, this.skipOracleRecycleBinTables );
+        config.setFeature( DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, caseSensitiveTableNames );
         
         config.setProperty( DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern );
         config.setProperty( DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory() );
