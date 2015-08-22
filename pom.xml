@@ -32,6 +32,10 @@
     <system>GitHub</system>
     <url>https://github.com/mojohaus/dbunit-maven-plugin/issues</url>
   </issueManagement>
+  <ciManagement>
+    <system>Travis</system>
+    <url>https://travis-ci.org/mojohaus/dbunit-maven-plugin</url>
+  </ciManagement>
   <prerequisites>
     <maven>2.0</maven>
   </prerequisites>
