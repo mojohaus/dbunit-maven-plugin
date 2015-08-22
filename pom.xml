@@ -25,6 +25,8 @@
     <slf4j.version>1.7.6</slf4j.version>
     <checkstyle.skip>true</checkstyle.skip>
     <scmpublish.content>target/staging/${project.artifactId}</scmpublish.content>
+    <!-- suppress timestamp in javadoc -->
+    <notimestamp>true</notimestamp>
   </properties>
   <issueManagement>
     <system>GitHub</system>
