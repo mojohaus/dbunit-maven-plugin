@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>mojo-parent</artifactId>
-    <version>23</version>
+    <version>37</version>
   </parent>
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>dbunit-maven-plugin</artifactId>
@@ -14,9 +14,9 @@
   <url>http://mojo.codehaus.org/dbunit-maven-plugin/</url>
   <inceptionYear>2006</inceptionYear>
   <scm>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</developerConnection>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin</connection>
-    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/dbunit-maven-plugin</url>
+    <developerConnection>scm:git:ssh://git@github.com/mojohaus/dbunit-maven-plugin.git</developerConnection>
+    <connection>scm:git:https://github.com/mojohaus/dbunit-maven-plugin.git</connection>
+    <url>https://github.com/mojohaus/dbunit-maven-plugin</url>
   </scm>  
   <description>
      Use this plugin to invoke DbUnit utilities
@@ -25,8 +25,8 @@
     <slf4j.version>1.7.6</slf4j.version>
   </properties>
   <issueManagement>
-    <system>JIRA</system>
-    <url>http://jira.codehaus.org/browse/MDBUNIT</url>
+    <system>GitHub</system>
+    <url>https://github.com/mojohaus/dbunit-maven-plugin/issues</url>
   </issueManagement>
   <prerequisites>
     <maven>2.0</maven>
