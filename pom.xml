@@ -23,6 +23,7 @@
   </description>
   <properties>
     <slf4j.version>1.7.6</slf4j.version>
+    <checkstyle.skip>true</checkstyle.skip>
   </properties>
   <issueManagement>
     <system>GitHub</system>
@@ -73,7 +74,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -120,23 +120,8 @@
   <build>
     <defaultGoal>install</defaultGoal>
     <plugins>
-      <!-- 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-docck-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-       -->
-       
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>1.5</version>
         <configuration>
           <debug>true</debug>
           <projectsDirectory>src/example</projectsDirectory>
@@ -158,23 +143,4 @@
       </plugin>      
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changes-plugin</artifactId>
-        <version>2.1</version>
-        <configuration>
-          <urlDownload>${project.url}</urlDownload>
-          <columnNames>Key,Summary,Status,Resolution,Assignee,Type,Version,Fix Version</columnNames>
-          <generateJiraAnnouncement>true</generateJiraAnnouncement>
-          <toAddresses>
-            <toAddress>dev@mojo.codehaus.org</toAddress>
-            <toAddress>user@mojo.codehaus.org</toAddress>
-            <toAddress>users@maven.apache.org</toAddress>
-          </toAddresses>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>
