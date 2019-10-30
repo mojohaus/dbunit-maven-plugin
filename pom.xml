@@ -37,7 +37,7 @@
     <url>https://travis-ci.org/mojohaus/dbunit-maven-plugin</url>
   </ciManagement>
   <prerequisites>
-    <maven>3.0</maven>
+    <maven>3.0.5</maven>
   </prerequisites>
   <developers>
     <developer>
@@ -150,4 +150,47 @@
       </plugin>      
     </plugins>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <skip>true</skip>
+          <instrumentation>
+            <excludes>
+              <exclude>**/HelpMojo.class</exclude>
+            </excludes>
+          </instrumentation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+  <profiles>
+    <profile>
+      <id>codecoverage</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>clean</goal>
+                </goals>
+                <configuration>
+                  <skip>true</skip>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

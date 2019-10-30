@@ -99,7 +99,7 @@ public abstract class AbstractDbUnitMojoTest
 
         Statement st = c.createStatement();
         st.executeUpdate( "drop table person if exists" );
-        st.executeUpdate( "create table person ( id integer, first_name varchar, last_name varchar)" );        
+        st.executeUpdate( "create table person ( id integer, first_name varchar(255), last_name varchar(255))" );
     }
     
     protected void populateMojoCommonConfiguration( AbstractDbUnitMojo mojo )
