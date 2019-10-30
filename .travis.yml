@@ -2,10 +2,12 @@ language: java
 sudo: no
 env:
   - MAVEN_VERSION=3.0.5
-  - MAVEN_VERSION=3.3.3
+  - MAVEN_VERSION=3.3.9
+  - MAVEN_VERSION=3.5.4
+  - MAVEN_VERSION=3.6.2
 jdk:
-  - oraclejdk7
-  - oraclejdk8
+  - openjdk8
+  - openjdk11
 install:
   - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
   - "./mvnw --show-version --errors --batch-mode test-compile dependency:go-offline"

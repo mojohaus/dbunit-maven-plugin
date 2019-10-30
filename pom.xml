@@ -37,7 +37,7 @@
     <url>https://travis-ci.org/mojohaus/dbunit-maven-plugin</url>
   </ciManagement>
   <prerequisites>
-    <maven>2.0</maven>
+    <maven>3.0</maven>
   </prerequisites>
   <developers>
     <developer>
