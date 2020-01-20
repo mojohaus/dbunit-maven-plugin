@@ -4,7 +4,7 @@ env:
   - MAVEN_VERSION=3.0.5
   - MAVEN_VERSION=3.3.9
   - MAVEN_VERSION=3.5.4
-  - MAVEN_VERSION=3.6.2
+  - MAVEN_VERSION=3.6.3
 jdk:
   - openjdk8
   - openjdk11

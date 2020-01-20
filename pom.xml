@@ -92,7 +92,7 @@
     <dependency>
       <groupId>org.dbunit</groupId>
       <artifactId>dbunit</artifactId>
-      <version>2.6.0</version>
+      <version>2.7.0</version>
     </dependency>
     <!-- dbunit depends on slf4j -->
     <dependency>
@@ -155,7 +155,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.7</version>
         <configuration>
           <skip>true</skip>
           <instrumentation>
@@ -178,7 +178,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
-            <version>2.6</version>
+            <version>2.7</version>
             <executions>
               <execution>
                 <goals>
